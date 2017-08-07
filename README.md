@@ -6,16 +6,16 @@
 <!-- MarkdownTOC autolink="true" bracket="round"-->
 
 - [Data Set Summary & Exploration](#data-set-summary--exploration)
-    - [1. Basic summary of the dataset](#1-basic-summary-of-the-dataset)
-    - [2. Exploratory visualization of the dataset.](#2-exploratory-visualization-of-the-dataset)
+  - [1. Basic summary of the dataset](#1-basic-summary-of-the-dataset)
+  - [2. Exploratory visualization of the dataset.](#2-exploratory-visualization-of-the-dataset)
 - [Design and Test a Model Architecture](#design-and-test-a-model-architecture)
-    - [1. Image preprocessing and augmentation](#1-image-preprocessing-and-augmentation)
-    - [2. Final model architecture](#2-final-model-architecture)
-    - [3. Model training](#3-model-training)
-    - [4. Final results and discussion](#4-final-results-and-discussion)
+  - [1. Image preprocessing and augmentation](#1-image-preprocessing-and-augmentation)
+  - [2. Final model architecture](#2-final-model-architecture)
+  - [3. Model training](#3-model-training)
+  - [4. Final results and discussion](#4-final-results-and-discussion)
 - [Test a Model on New Images](#test-a-model-on-new-images)
-    - [1. Custom traffic sign images](#1-custom-traffic-sign-images)
-    - [2. Model performace on the custom images](#2-model-performace-on-the-custom-images)
+  - [1. Custom traffic sign images](#1-custom-traffic-sign-images)
+  - [2. Model performace on the custom images](#2-model-performace-on-the-custom-images)
 
 <!-- /MarkdownTOC -->
 
@@ -36,9 +36,9 @@
 ---
 
 
-##Data Set Summary & Exploration
+## Data Set Summary & Exploration
 
-###1. Basic summary of the dataset
+### 1. Basic summary of the dataset
 
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
@@ -49,7 +49,7 @@ signs data set:
 * The shape of a traffic sign image is 32x32x3
 * The number of unique classes/labels in the data set is 43
 
-###2. Exploratory visualization of the dataset.
+### 2. Exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. One example image of each type of traffic sign is shown. We can immediately notice the contrast and exposure of the images are vastly different. We can imagine global and local contrast normalization will be needed to improve classification accuracy.
 
@@ -59,9 +59,9 @@ Below shows the histogram of number of images in each class in the training, val
 
 ![TTT][image2]
 
-##Design and Test a Model Architecture
+## Design and Test a Model Architecture
 
-###1. Image preprocessing and augmentation
+### 1. Image preprocessing and augmentation
 
 The steps for image preprocessing are similar to Pierre Sermanet and Yann LeCun mentioned in [their paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf). The pipeline consists 3 steps
 
@@ -88,7 +88,7 @@ Here is an example of an original image and an augmented image (after preprocess
 The difference between the original data set and the augmented data set is the following ... 
 
 
-###2. Final model architecture
+### 2. Final model architecture
 
 My final model consisted of the following layers:
 
@@ -111,7 +111,7 @@ My final model consisted of the following layers:
 ```
 Please see function `model_pass` in `traffic_sign_tf_model.py` for the tensorflow implementation of the neural network. 
 
-###3. Model training
+### 3. Model training
 
 To train the model, I used an AdamOptimizer with the following parameters.
 
@@ -126,7 +126,7 @@ dropout was used in the convolution layers and full connected layers to prevent 
 ![alt text][image5]
 
 
-###4. Final results and discussion
+### 4. Final results and discussion
 
 My final model results were:
 
@@ -137,9 +137,9 @@ My final model results were:
 At first, I tried the architecture proposed in Pierre Sermanet and Yann LeCun's paper: 2 conv layers followd by 2 fully connected layers, with the feature maps extracted from the first conv layer skip forward to the FC layer. However, I find the model trains slowly, and doesn't generalize well on the validation set. In the end, I was able to get about 97% accuracy on the validation set, with about 300 epochs of training. I then tried adding more conv layers and reduce FC layers. I found this allows the model to train much faster, and the overfitting problems seems to be alleviated. After fixing the basic structure, I tried to vary the depth of each conv layer, the size of the FC layer, as well as the dropout ratio to find the balance between the test and validation loss. 
  
 
-##Test a Model on New Images
+## Test a Model on New Images
 
-###1. Custom traffic sign images
+### 1. Custom traffic sign images
 
 Here are five German traffic signs that I found on the web:
 
@@ -147,7 +147,7 @@ Here are five German traffic signs that I found on the web:
 
 The first image might be difficult to classify because of the building in the background. The rim on the left image might make it difficult. The background of the third and fourth image was not seen in the training set, while the color of background was yellow on the fifth image, which might make them hard to classify.
 
-###2. Model performace on the custom images 
+### 2. Model performace on the custom images 
 
 
 Here are the results of the prediction:
@@ -166,7 +166,7 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 The above table summarizes the model performance on the 5 classes where the custom images belong to. The precision and recall value is calculated on the test set. `Sample Percentage` means the percentage of training samples of the class in the total population of training samples. If the classes were balanced, each class would have 1/43 = 2.3% samples. As we can see, on the image where the model made mistake (Stop Sign), both precision and recall are decent on the test set, and stop sign is not a rare class in terms of population. Therefore the error is likely due to the extra rim on the image which doesn't appear on the traning images. 
 
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+### 3. Probability prediction 
 
 The code for making predictions on my final model is located from cell 171 to cell 179 cell of the Ipython notebook. I did not use the top_k function in tensorflow, instead I get the logtis from tensorflow model and calculated softmax and selected top 5 classes using numpy.  See the plot below for the probability predicted by my model on each image. 
 
