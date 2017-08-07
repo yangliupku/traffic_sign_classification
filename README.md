@@ -1,8 +1,6 @@
 #**Traffic Sign Recognition** 
 
 
-
-**Build a Traffic Sign Recognition Project**
 ## Table of Contents
 
 <!-- MarkdownTOC autolink="true" bracket="round"-->
