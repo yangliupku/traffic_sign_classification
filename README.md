@@ -1,16 +1,26 @@
 #**Traffic Sign Recognition** 
 
 
+
 **Build a Traffic Sign Recognition Project**
+## Table of Contents
 
-The goals / steps of this project are the following:
+<!-- MarkdownTOC autolink="true" bracket="round"-->
 
-* Load the data set (see below for links to the project data set)
-* Explore, summarize and visualize the data set
-* Design, train and test a model architecture
-* Use the model to make predictions on new images
-* Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
+- [Data Set Summary & Exploration](#data-set-summary--exploration)
+    - [1. Basic summary of the dataset](#1-basic-summary-of-the-dataset)
+    - [2. Exploratory visualization of the dataset.](#2-exploratory-visualization-of-the-dataset)
+- [Design and Test a Model Architecture](#design-and-test-a-model-architecture)
+    - [1. Image preprocessing and augmentation](#1-image-preprocessing-and-augmentation)
+    - [2. Final model architecture](#2-final-model-architecture)
+    - [3. Model training](#3-model-training)
+    - [4. Final results and discussion](#4-final-results-and-discussion)
+- [Test a Model on New Images](#test-a-model-on-new-images)
+    - [1. Custom traffic sign images](#1-custom-traffic-sign-images)
+    - [2. Model performace on the custom images](#2-model-performace-on-the-custom-images)
+
+<!-- /MarkdownTOC -->
+
 
 
 [//]: # (Image References)
